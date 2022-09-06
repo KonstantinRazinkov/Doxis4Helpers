@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib.iso">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib.iso" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib.iso" recursive="false" />
+  </library>
+</component>

@@ -1,0 +1,61 @@
+﻿original;Оригинальный файл
+printform;Печатная форма (сформирована Диадок)
+protocol;Протокол (сформирован Диадок)
+technicalxml;Технический файл XML
+signature;Файл подписи
+resolution;Информация о статусе согласования документа
+resolutionrequest;Запрос согласования документа
+resolutionrequestdenial;Отказ в запросе подписи документа
+unknown;Неизвестный
+xmlSignatureRejection;Формализованный отказ в подписи
+xmlAcceptanceCertificate;Акт о выполнении работ / оказании услуг в XML-формате, титул исполнителя
+xmlTorg12;Товарная накладная ТОРГ-12 в XML-формате, титул продавца
+xmlTorg12BuyerTitle;Товарная накладная ТОРГ-12 в XML-формате, титул покупателя
+xmlAcceptanceCertificateBuyerTitle;Акт о выполнении работ / оказании услуг в XML-формате, титул заказчика
+nonformalized;Неформализованный документ
+invoice;Счет-фактура
+invoiceRevision;Исправление счета-фактуры
+invoiceCorrection;Корректировочный счет-фактура
+invoiceCorrectionRevision;Исправление корректировочного счета-фактуры
+torg12;Товарная накладная ТОРГ-12
+acceptanceCertificate;Акт о выполнении работ / оказании услуг
+trustConnectionRequest;Ззапрос на инициацию канала обмена документами через Диадок
+priceList;Ценовой лист
+priceListAgreement;Протокол согласования цены
+certificateRegistry;Реестр сертификатов
+reconciliationAct;Акт сверки
+proformaInvoice;Счет на оплату
+contract;Договор
+torg13;Накладная ТОРГ-13
+serviceDetails;Детализация
+supplementaryAgreement;Дополнительное соглашение к договору
+universalTransferDocument;Универсальный передаточный документ (УПД)
+universalTransferDocumentRevision;Исправление универсального передаточного документа
+universalCorrectionDocument;Универсальный корректировочный документ (УКД)
+universalCorrectionDocumentRevision;исправление универсального корректировочного документа
+unknownDocumentType;Неизвестный тип документа
+signature;Подпись
+invoiceReceipt ;Извещение о получении счета-фактуры, подтверждения оператора электронного документооборота или уведомления об уточнении счета-фактуры
+InvoiceConfirmation;Подтверждение оператора электронного документооборота
+invoiceCorrectionRequest;уведомление об уточнении счета-фактуры
+attachmentComment ;Текстовый комментарий к другой сущности-вложению
+deliveryFailureNotification;Уведомление о невозможности доставки сообщения
+signatureRequestRejection;Отказ в формировании запрошенной подписи
+signatureVerificationReport;Протокол проверки подписи, сформированный Диадоком
+trustConnectionRequest;Запрос на инициацию канала обмена документами через Диадок
+proformaInvoice;Счет на оплату
+structuredData;Произвольный файл со структурированными данными, описывающими тот или иной документ, представленный в виде печатной формы
+receipt;Извещение о получении
+revocationRequest;Предложение об аннулировании
+roamingNotification;Роуминговая квитанция
+supplementaryAgreement;Дополнительное соглашение к договору
+customData;Произвольные данные к документу
+moveDocument;Информация о перемещении документа в подразделение
+resolutionRouteAssignment;Информация о запуске документа по маршруту согласования
+resolutionRouteRemoval;Информация о снятии документа с маршрута согласования
+title;"Титул документа; возвращается для всех вновь добавляемых типов документов, для сохранения обратной совместимости для первых титулов типов от Invoice до UniversalCorrectionDocumentRevision возвращается соответствующее значение"
+cancellation;Информация об отмене сущности, которая указана родительской по отношению к данной
+edition;Информация о редактировании контента документа, который указан родительским по отношению к данной сущности
+deletionRestoration;Восстановление удалённого документа
+templateTransformation;Информация о трансформации
+templateRefusa;Информация об отклонении или отзыве шаблона

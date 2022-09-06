@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Archiver/Archiver.iml" filepath="$PROJECT_DIR$/Archiver/Archiver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Commons/Commons.iml" filepath="$PROJECT_DIR$/Commons/Commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Documents/Documents.iml" filepath="$PROJECT_DIR$/Documents/Documents.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Doxis4Helpers.iml" filepath="$PROJECT_DIR$/Doxis4Helpers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EDM/EDM.iml" filepath="$PROJECT_DIR$/EDM/EDM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Notifications/Notifications.iml" filepath="$PROJECT_DIR$/Notifications/Notifications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SQL/SQL.iml" filepath="$PROJECT_DIR$/SQL/SQL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WebCube/WebCube.iml" filepath="$PROJECT_DIR$/WebCube/WebCube.iml" />
+    </modules>
+  </component>
+</project>

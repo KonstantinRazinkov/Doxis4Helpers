@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Class-Path: gson-2.7.jar guava-18.0.jar guava-19.0.jar cdi-api-1.0.jar
+  asn1rt-1.0.3.jar guava-10.0.1.jar jsr305-1.3.9.jar commons-io-2.4.ja
+ r httpcore-4.1.2.jar javax.inject-1.jar jsr250-api-1.0.jar aopallianc
+ e-1.0.jar commons-lang-2.6.jar diadocsdk-1.51.7.jar httpclient-4.1.2.
+ jar annotations-1.0.0.jar commons-codec-1.4.jar maven-model-3.2.1.jar
+  plexus-utils-3.0.17.jar protobuf-java-3.5.1.jar maven-artifact-3.2.1
+ .jar commons-logging-1.1.1.jar maven-plugin-api-3.2.1.jar plexus-clas
+ sworlds-2.4.jar sisu-guice-3.1.0-no_aop.jar protobuf-java-util-3.5.1.
+ jar org.apache.commons.io-2.4.jar os-maven-plugin-1.2.3.Final.jar os-
+ maven-plugin-1.4.0.Final.jar protobuf-gradle-plugin-0.5.0.jar protobu
+ f-gradle-plugin-0.8.5.jar osdetector-gradle-plugin-1.2.1.jar osdetect
+ or-gradle-plugin-1.4.0.jar org.eclipse.sisu.inject-0.0.0.M5.jar org.e
+ clipse.sisu.plexus-0.0.0.M5.jar plexus-component-annotations-1.5.5.ja
+ r org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2.jar dom.
+ jar xsdlib.jar jdom-1.0.jar poi-3.16.jar saaj-api.jar saaj-impl.jar j
+ axrpc-api.jar itext-2.1.7.jar jaxrpc-impl.jar cwf-5.1.11.0.jar jcifs-
+ 1.3.17.jar log4j-1.2.17.jar pdflib-7.0.1.jar jax-qname-1.1.jar pdfbox
+ -2.0.11.jar pdfint3-7.4.5.jar pdfint5-7.4.5.jar pdfint6-7.4.5.jar pdf
+ int7-7.4.5.jar blconfig-7.4.5.jar blueline-7.4.5.jar commons-io-2.5.j
+ ar fontbox-2.0.11.jar httpcore-4.4.3.jar jai_core-1.1.2.jar commons-i
+ maging.jar jai_codec-1.1.2.jar relaxngDatatype.jar activation-1.1.1.j
+ ar blmetadata-7.4.5.jar commons-lang-2.5.jar httpclient-4.5.1.jar jav
+ ax.mail-1.6.0.jar annotations-3.0.0.jar bcmail-jdk15-1.45.jar bcprov-
+ jdk15-1.45.jar bpmline-api-7.4.5.jar cglib-nodep-3.2.4.jar commons-la
+ ng3-3.4.jar itaxmlserver-stub.jar bluelineimpl-7.4.5.jar bluelineutil
+ -7.4.5.jar bpmline-impl-7.4.5.jar commons-codec-1.10.jar foldermanage
+ r-7.4.5.jar poi-scratchpad-3.16.jar sercommon-io-2.38.1.jar blueline-
+ tools-7.4.5.jar sercommon-net-2.38.1.jar commons-logging-1.1.1.jar se
+ rcommon-lang-2.38.1.jar sercommon-pool-2.38.1.jar sercommon-text-2.38
+ .1.jar doxis4JavaApiUtil-7.4.5.jar commons-collections4-4.1.jar serco
+ mmon-logging-2.38.1.jar sercommon-runtime-2.38.1.jar dx4-sessionpool-
+ api-7.4.5.jar relationshipmanager-7.4.5.jar commons-configuration-1.1
+ 0.jar dx4-sessionpool-impl-7.4.5.jar sednaclient-blueline-7.4.5.jar s
+ ercommon-lang-base-2.38.1.jar blueline-localization-7.4.5.jar sednacl
+ ient-api-nodep-3.4.5.jar sercommon-collections-2.38.1.jar doxis4JavaA
+ piSessionPool-7.4.5.jar
+

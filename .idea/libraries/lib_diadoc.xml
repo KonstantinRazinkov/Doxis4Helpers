@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="lib.diadoc">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib.diadoc/jcp" />
+      <root url="file://$PROJECT_DIR$/lib.diadoc" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib.diadoc/jcp" />
+      <root url="file://$PROJECT_DIR$/lib.diadoc" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib.diadoc" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib.diadoc/jcp" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib.diadoc" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib.diadoc/jcp" recursive="false" type="SOURCES" />
+  </library>
+</component>

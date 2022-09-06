@@ -1,0 +1,8 @@
+com.sersolutions.doxis4helpers.archiver
+com.sersolutions.doxis4helpers.commons
+com.sersolutions.doxis4helpers.commons.types
+com.sersolutions.doxis4helpers.documents
+com.sersolutions.doxis4helpers.documents.excel
+com.sersolutions.doxis4helpers.notifications
+com.sersolutions.doxis4helpers.notifications.email
+com.sersolutions.doxis4helpers.webcube
