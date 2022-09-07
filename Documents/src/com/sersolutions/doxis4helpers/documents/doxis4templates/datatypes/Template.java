@@ -26,7 +26,7 @@ public class Template {
      * @param descriptorMappingTable IDescriptorMapping from Doxis4
      *                                @see com.ser.blueline.metaDataComponents.IDescriptorMapping
      * @return Map with mapping
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ConcurrentMap<String, DescriptorMapping> AnalyzeMappingTable(IDescriptorMappingTable descriptorMappingTable) throws Exception {
         templateName = descriptorMappingTable.getName();

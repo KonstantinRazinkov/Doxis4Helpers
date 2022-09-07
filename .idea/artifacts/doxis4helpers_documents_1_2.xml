@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="doxis4helpers-documents-1.2">
-    <output-path>$PROJECT_DIR$/out/artifacts/doxis4helpers_documents_1_2</output-path>
-    <root id="archive" name="doxis4helpers-documents-1.2.jar">
-      <element id="module-output" name="Documents" />
-    </root>
-  </artifact>
-</component>

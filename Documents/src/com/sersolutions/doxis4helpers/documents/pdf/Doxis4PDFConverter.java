@@ -20,7 +20,7 @@ public class Doxis4PDFConverter {
     /**
      * Initialize converter
      * @param doxis4Session Doxis4 session object
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public Doxis4PDFConverter(ISession doxis4Session) throws Exception {
         if (doxis4Session == null) throw new Exception("Can't initialize Doxis2PDFConverter without Doxis4 session");
@@ -70,7 +70,7 @@ public class Doxis4PDFConverter {
      * Easy to use function to get PDF file by link to Doxis4 document (first representation, first document part)
      * @param documentID Doxis4 Document ID
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public byte[] GetPDFFileFromDoxis4Document(String documentID) throws Exception {
         return GetPDFFileFromDoxis4Document(documentID, 0, 0);
@@ -82,7 +82,7 @@ public class Doxis4PDFConverter {
      * @param representation Number of representation (0-based index)
      * @param partdocument Number of document part (0-based index)
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public byte[] GetPDFFileFromDoxis4Document(String documentID, int representation, int partdocument) throws Exception {
         IDocument document = doxis4Session.getDocumentServer().getDocument4ID(documentID, doxis4Session);
@@ -94,7 +94,7 @@ public class Doxis4PDFConverter {
      * Get PDF file by Doxis4 document object (first representation, first document part)
      * @param doxis4Document Doxix4 Document object
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public byte[] GetPDFFileFromDoxis4Document(IDocument doxis4Document) throws Exception {
         return GetPDFFileFromDoxis4Document(doxis4Document, 0, 0);
@@ -106,7 +106,7 @@ public class Doxis4PDFConverter {
      * @param representation Number of representation (0-based index)
      * @param partdocument Number of document part (0-based index)
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public byte[] GetPDFFileFromDoxis4Document(IDocument doxis4Document, int representation, int partdocument) throws Exception {
         return GetPDFFileFromDoxis4DocumentPart(doxis4Document.getPartDocument(representation, partdocument));
@@ -116,7 +116,7 @@ public class Doxis4PDFConverter {
      * Get PDF file by Doxis4 DocumentPart
      * @param documentPart Doxis4 DocumentPart object
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public byte[] GetPDFFileFromDoxis4DocumentPart(IDocumentPart documentPart) throws Exception {
         byte[] result = null;

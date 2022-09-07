@@ -23,7 +23,7 @@ public class DocxControlsXml {
     /**
      * Analyse controls from xml file of values inside docx word file
      * @param xmlFile byte array with xml
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public DocxControlsXml(byte[] xmlFile) throws Exception {
         this(new ByteArrayInputStream(xmlFile));
@@ -32,7 +32,7 @@ public class DocxControlsXml {
     /**
      * Analyse controls from xml file of values inside docx word file
      * @param xmlFile ByteArrayInputStream of xml file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public DocxControlsXml(ByteArrayInputStream xmlFile) throws Exception {
         javax.xml.parsers.DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -44,7 +44,7 @@ public class DocxControlsXml {
     /**
      * Save changes of the file
      * @return ByteArrayOutputStream of changed xml file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ByteArrayOutputStream saveChanges() throws Exception {
         javax.xml.transform.TransformerFactory transformerFactory = javax.xml.transform.TransformerFactory.newInstance();
@@ -60,7 +60,7 @@ public class DocxControlsXml {
      * Get node of the field from xml structure
      * @param cascade cascade field name information
      * @return node with field
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public Node getNodeByFieldCascade(TemplateFieldCascade cascade) throws Exception {
         Node actualNode = null;
@@ -84,8 +84,8 @@ public class DocxControlsXml {
      * Change the value of control
      * @param fieldCascade cascade field name information
      * @param value value
-     * @throws AttributeNotFoundException
-     * @throws Exception
+     * @throws AttributeNotFoundException if something goes wrong
+     * @throws Exception if something goes wrong
      */
     public void SetValue(TemplateFieldCascade fieldCascade, String value) throws AttributeNotFoundException, Exception {
         Node xmlNode = this.getNodeByFieldCascade(fieldCascade);

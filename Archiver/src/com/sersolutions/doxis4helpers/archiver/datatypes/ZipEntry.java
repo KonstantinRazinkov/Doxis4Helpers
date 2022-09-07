@@ -67,7 +67,7 @@ public class ZipEntry {
     /**
      * Get output stream of file
      * @return ByteArrayOutputStream of file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ByteArrayOutputStream getBaos() throws Exception {
         if (content != null) {

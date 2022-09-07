@@ -52,7 +52,7 @@ public class RibbonProducer {
     /**
      * Get ribbon
      * @return ribbon
-     * @throws EvitaWebException
+     * @throws EvitaWebException if something goes wrong
      */
     public Toolbar getRibbon() throws EvitaWebException {
         if (searchScripting != null) {
@@ -86,7 +86,8 @@ public class RibbonProducer {
      * @param executeclassname Class for execution of clicking
      *                         @see com.ser.evITAWeb.scripting.toolbar.hitlist.HitlistToolbarButtonAction
      * @param redirectURL HTTP address to redirect after button was clicked (works only if executeclassname is null
-     * @return
+     * @return Button object
+     *         @see com.ser.evITAWeb.api.toolbar.Button
      */
     public Button getButton(String title, String tooltip, String imagePath, String executeclassname, String redirectURL) {
         Button btn = Doxis4ClassFactory.getButton();
@@ -114,7 +115,7 @@ public class RibbonProducer {
      * @param executeclassname Class for execution of clicking
      *                         @see com.ser.evITAWeb.scripting.toolbar.hitlist.HitlistToolbarButtonAction
      * @param redirectURL HTTP address to redirect after button was clicked (works only if ececuteclassname is null
-     * @throws EvitaWebException
+     * @throws EvitaWebException if something goes wrong
      */
     public void addButton(String groupName, String groupDescription, String title, String tooltip, String imagePath, String executeclassname, String redirectURL) throws EvitaWebException {
 

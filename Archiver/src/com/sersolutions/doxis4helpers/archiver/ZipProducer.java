@@ -50,6 +50,7 @@ public class ZipProducer {
      * @param session Doxis4 Session Object
      *                @see com.ser.blueline.ISession
      * @param file ZIP file to load
+     * @throws Exception if something goes wrong
      */
     public ZipProducer(ISession session, byte[] file) throws Exception {
         this(session);
@@ -78,7 +79,7 @@ public class ZipProducer {
      * Get entry from Zip-File
      * @param path Path of file inside Zip-File
      * @return Byte array of file from zip-file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public byte[] GetEntry(String path) throws Exception {
         if (!entries.containsKey(path)) {
@@ -90,7 +91,7 @@ public class ZipProducer {
     /**
      * Create ZIP-file
      * @param type Format of creation of ZIP
-     *             @use FinishType
+     *             @see FinishType
      * @return byte array of result ZIP file
      * @throws Exception if something goes wrong
      */
@@ -207,6 +208,7 @@ public class ZipProducer {
      *                 @see com.ser.blueline.IDocument
      * @param path path in ZIP
      * @param nameType How to name file in ZIP
+     * @param commonFileName File name
      * @param extractSignatures Extract signatures from document
      * @throws Exception if something goes wrong
      */
@@ -364,6 +366,7 @@ public class ZipProducer {
      * @param path path in
      * @param folderSaverMode how to save files by folder structure
      * @param nameType how to name files in document
+     * @param commonFileName file name
      * @param descriptors list of descriptors to name documents
      * @param splitter splitter between descriptors
      * @throws Exception if something goes wrong

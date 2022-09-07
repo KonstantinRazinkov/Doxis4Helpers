@@ -1,7 +1,5 @@
 package com.sersolutions.doxis4helpers.sql.datatypes;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,9 +15,9 @@ public class SqlRow implements Cloneable {
     ILoggerOwner loggerOwner;
     Configuration configuration;
 
-    public SqlRow()throws NotImplementedException {
+    /*public SqlRow()throws NotImplementedException {
         throw new NotImplementedException();
-    }
+    }*/
 
     public SqlRow(ILoggerOwner loggerOwner, Configuration configuration) {
         this.loggerOwner = loggerOwner;
@@ -88,7 +86,7 @@ public class SqlRow implements Cloneable {
     /**
      * Gets column by its name
      * @param columnName Column name
-     * @return
+     * @return Object of column
      */
     public Object getColumnByName(String columnName) {
         if (columnNames == null) return null;
@@ -229,7 +227,7 @@ public class SqlRow implements Cloneable {
             if (value instanceof Date) {
                 java.sql.Timestamp sqTimestamp = new java.sql.Timestamp(((Date)value).getTime());
 
-                values.append(String.format(configuration.getDateTimeConversionCode(), sqTimestamp.toString().replace(" ", "T"))); //TODO: Переделать! Надо задавать формат в настройках!
+                values.append(String.format(configuration.getDateTimeConversionCode(), sqTimestamp.toString().replace(" ", "T"))); //TODO: ReDo! Format must be set in configurations!
             }
         }
         names.append(")");

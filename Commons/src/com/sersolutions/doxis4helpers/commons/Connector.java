@@ -24,6 +24,8 @@ public class Connector {
      * @param archivePort Port number used by the web application server, for
      * example: 8080.
      *
+     * @param tempDir temporary directory path
+     *
      * @throws Exception in case of any error.
      */
     public void initServer(String archiveServerName, String archivePort, String tempDir) throws Exception {
@@ -104,7 +106,7 @@ public class Connector {
     /**
      * This methods finishes the user session.
      *
-     * @throws BlueLineException
+     * @throws BlueLineException if something goes wrong
      */
     public void logout() throws BlueLineException {
         _documentServer.logout(_session);

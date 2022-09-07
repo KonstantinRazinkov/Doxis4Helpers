@@ -64,7 +64,7 @@ public class DocxContentControlEditor {
      * Load word docx file from some path
      * @param path path to file
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer Load(String path) throws Exception{
         return Load(Files.readAllBytes(Paths.get(path)));
@@ -74,7 +74,7 @@ public class DocxContentControlEditor {
      * Load word docx file from memory
      * @param file file in byte array
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer Load(byte[] file) throws Exception{
         wordFile = new ZipProducer(doxis4Session, file);
@@ -110,7 +110,7 @@ public class DocxContentControlEditor {
      * Load word docx file from Doxis4 (first representation, first document part)
      * @param docID Doxis4 Document ID
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer LoadFromDoxis4(String docID) throws Exception{
         StringBuilder errBuilder = new StringBuilder();
@@ -133,7 +133,7 @@ public class DocxContentControlEditor {
      * @param docID Doxis4 Document ID
      * @param representation number of representation that have target word file
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer LoadFromDoxis4(String docID, int representation) throws Exception{
         IDocument document = doxis4Session.getDocumentServer().getDocument4ID(docID, doxis4Session);
@@ -146,7 +146,7 @@ public class DocxContentControlEditor {
      * @param document Doxis4 Document object
      * @param representationNo number of representation that have target word file
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer LoadFromDoxis4(IDocument document, int representationNo) throws Exception{
         IRepresentation representation = document.getRepresentation(representationNo);
@@ -157,7 +157,7 @@ public class DocxContentControlEditor {
      * Load word docx file from Doxis4 representation
      * @param representation Doxis4 representation
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer LoadFromDoxis4(IRepresentation representation) throws Exception{
         StringBuilder errBuilder = new StringBuilder();
@@ -178,7 +178,7 @@ public class DocxContentControlEditor {
      * @param representation Representation number
      * @param partdocument PartDocument number
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer LoadFromDoxis4(String docID, int representation, int partdocument) throws Exception{
         IDocument document = doxis4Session.getDocumentServer().getDocument4ID(docID, doxis4Session);
@@ -190,7 +190,7 @@ public class DocxContentControlEditor {
      * Load word docx file from Doxis4 Document part
      * @param documentPart Doxis4 Document Part
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer LoadFromDoxis4(IDocumentPart documentPart) throws Exception{
         try {
@@ -206,7 +206,7 @@ public class DocxContentControlEditor {
     /**
      * Save changes in word file in memory
      * @return word file as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ZipProducer commit() throws Exception{
         int itemNumber = 0;
@@ -224,7 +224,7 @@ public class DocxContentControlEditor {
      * @param templateID ID of template from Doxis4
      * @param loadType Loading type of template
      * @return template from Doxis4 as zip-archive
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
 
     public ZipProducer LoadDoxis4Template(String templateID, TemplateLoader.LoadType loadType) throws Exception{
@@ -248,7 +248,7 @@ public class DocxContentControlEditor {
      * Set value to control inside docx file
      * @param descriptorName Doxis4 descriptor name
      * @param value value must be set
-     * @return
+     * @return String with value settled
      */
     public String setFieldValue(String descriptorName, String value){
         if (fields.containsKey(descriptorName)) {
@@ -263,7 +263,7 @@ public class DocxContentControlEditor {
      * Get map with values of Doxis4 document
      * @param document Doxis4 document object
      * @return map with values from Document
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ConcurrentMap<String, String> getFieldValuesFromDoxis4Document(IDocument document) throws Exception{
         for (String key : fields.keySet()) {
@@ -296,7 +296,7 @@ public class DocxContentControlEditor {
      * Set map with values to Doxis4 document
      * @param document Doxis4 document object
      * @return map with values that must be stored to Document
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ConcurrentMap<String, String> setFieldValuesToDoxis4Document(IDocument document) throws Exception{
         for (String key : fields.keySet()) {
@@ -308,7 +308,7 @@ public class DocxContentControlEditor {
     /**
      * Get map with values from controls of docx word file
      * @return map with values from word file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ConcurrentMap<String, String> getFieldValuesFromDocx() throws Exception{
         for (DescriptorMapping descriptorMapping : template.getDescriptorMappings().values()) {
@@ -322,7 +322,7 @@ public class DocxContentControlEditor {
     /**
      * Set map with values from controls of docx word file
      * @return map with values that must be set to word file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ConcurrentMap<String, String> setFieldValuesToDocx() throws Exception{
         for (DescriptorMapping descriptorMapping : template.getDescriptorMappings().values()) {

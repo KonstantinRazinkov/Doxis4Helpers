@@ -35,8 +35,8 @@ public class ISO9660Config extends StandardConfig {
     }
 
     /**
-     * Set Interchange Level<br> 1: Filenames 8+3, directories 8 characters<br> 2: Filenames 30, directories 31
-     * characters<br> 3: multiple File Sections (files > 2 GB)
+     * Set Interchange<br>Level 1: Filenames 8+3, directories 8 characters<br> 2: Filenames 30, directories 31
+     * <br>characters 3: multiple File Sections (files more than 2 GB)
      *
      * @param level 1, 2 or 3
      *

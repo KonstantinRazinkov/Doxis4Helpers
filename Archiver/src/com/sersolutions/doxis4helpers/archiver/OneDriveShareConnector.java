@@ -108,7 +108,7 @@ public class OneDriveShareConnector {
 
         }
 
-        throw new Exception(String.format("Не удалось найти сведения о выгруженном файле с идентификатором '%s'", documentID));
+        throw new Exception(String.format("Couldn't find data about exported file with ID '%s'", documentID));
 
     }
 
@@ -145,7 +145,7 @@ public class OneDriveShareConnector {
         }
         catch (Exception ex) {}
 
-        throw new Exception(String.format("Вы достигли лимита одновременно используемых файлов %d", this.getFilesCount()));
+        throw new Exception(String.format("You've reached the limit of one-time used files %d", this.getFilesCount()));
 
     }
 

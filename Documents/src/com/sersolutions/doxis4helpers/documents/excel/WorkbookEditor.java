@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Class for editing XLSX workbooks
- * @WARNING: this class is in beta-version. It does not work 100% correct (meaning auto-height).
+ * WARNING: this class is in beta-version. It does not work 100% correct (meaning auto-height).
  */
 public class WorkbookEditor {
 

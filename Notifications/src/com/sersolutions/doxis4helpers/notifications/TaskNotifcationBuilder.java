@@ -335,6 +335,7 @@ public class TaskNotifcationBuilder {
      * @param sendMethod method of sending
      * @param contents list of files to send
      * @param addresses List of addresses to send notification
+     * @param messageReplacements Map of Name - Value pairs to be used in messages to replace all occurrences of %Name% to Value
      * @param personName salutation of email
      * @param responsibleID ID of person to make decisions
      * @return String message of notification
@@ -680,6 +681,7 @@ public class TaskNotifcationBuilder {
     /**
      * More 'generic' implementation of Send notification about task to multiple users (usually at the end of process to all participants)
      * @param sendMethod method of sending
+     * @param informationObject object of type IInformationObject
      * @param showDecisions show decisions links in notification or not
      * @param linkToDoxis kind of links to Doxis4
      * @param descriptors Map of Name - Value descriptors that must be showed in notification

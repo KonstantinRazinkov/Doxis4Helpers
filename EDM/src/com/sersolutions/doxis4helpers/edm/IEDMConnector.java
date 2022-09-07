@@ -7,9 +7,6 @@ import com.ser.blueline.bpm.ITask;
 
 import java.util.List;
 
-/**
- * Created by drazdov on 29.08.2019.
- */
 public interface IEDMConnector {
 
 

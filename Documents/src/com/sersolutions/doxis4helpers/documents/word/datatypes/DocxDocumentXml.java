@@ -29,7 +29,7 @@ public class DocxDocumentXml {
     /**
      * Load xml from word docx document
      * @param xmlFile xml file as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public DocxDocumentXml(byte[] xmlFile) throws Exception {
         this(new ByteArrayInputStream(xmlFile));
@@ -38,7 +38,7 @@ public class DocxDocumentXml {
     /**
      * Load xml from word docx document
      * @param xmlFile xml file as byte array input stream
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public DocxDocumentXml(ByteArrayInputStream xmlFile) throws Exception {
         javax.xml.parsers.DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -138,7 +138,7 @@ public class DocxDocumentXml {
      * Set value to control inside docx xml structure
      * @param fieldCascade cascade of field names
      * @param value value
-     * @throws AttributeNotFoundException
+     * @throws AttributeNotFoundException if something goes wrong
      */
     public void SetValue(TemplateFieldCascade fieldCascade, String value) throws AttributeNotFoundException {
         TemplateField lastField = fieldCascade.getFields().get(fieldCascade.getFields().size()-1);
@@ -148,7 +148,7 @@ public class DocxDocumentXml {
      * Set value to control inside docx xml structure
      * @param fieldCascade cascade of field names
      * @param value value
-     * @throws AttributeNotFoundException
+     * @throws AttributeNotFoundException if something goes wrong
      */
     public void SetValueMultiple(TemplateFieldCascade fieldCascade, String value) throws AttributeNotFoundException {
         TemplateField lastField = fieldCascade.getFields().get(fieldCascade.getFields().size()-1);
@@ -159,7 +159,7 @@ public class DocxDocumentXml {
      * Set value to control inside docx xml structure
      * @param fieldName field name of control
      * @param value value
-     * @throws AttributeNotFoundException
+     * @throws AttributeNotFoundException if something goes wrong
      */
     public void SetValue(String fieldName, String value) throws AttributeNotFoundException {
         Node tag = sdtControls.get(fieldName);
@@ -214,7 +214,7 @@ public class DocxDocumentXml {
      * Set value to control inside docx xml structure
      * @param fieldName field name of control
      * @param value value
-     * @throws AttributeNotFoundException
+     * @throws AttributeNotFoundException if something goes wrong
      */
     public void SetValueMultiple(String fieldName, String value) throws AttributeNotFoundException {
         boolean haveErrors=false;
@@ -286,7 +286,7 @@ public class DocxDocumentXml {
     /**
      * Save changes back to original xml
      * @return byte array output stream with xml that must be saved inside word file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public ByteArrayOutputStream saveChanges() throws Exception {
         javax.xml.transform.TransformerFactory transformerFactory = javax.xml.transform.TransformerFactory.newInstance();

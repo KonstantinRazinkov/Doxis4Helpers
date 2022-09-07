@@ -39,7 +39,7 @@ public class SqlConnector {
      *                    @see com.sersolutions.doxis4helpers.sql.datatypes.ILoggerOwner
      * @param configuration Configuration for connection
      *                      @see com.sersolutions.doxis4helpers.sql.datatypes.Configuration
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public SqlConnector(ILoggerOwner loggerOwner, Configuration configuration) throws Exception {
         this.setLoggerOwner(loggerOwner);
@@ -49,7 +49,7 @@ public class SqlConnector {
 
     /**
      * Opens connection to DataBase
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public void Open() throws Exception {
         if (configuration.getSqlClass() != null && !"".equalsIgnoreCase(configuration.getSqlClass())) {
@@ -130,7 +130,7 @@ public class SqlConnector {
      * @param sqlQuery string with SQL Query
      * @return List of SqlRows from DataBase
      *                 @see com.sersolutions.doxis4helpers.sql.datatypes.SqlRow
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public List<SqlRow> Query(String sqlQuery) throws Exception {
         List<SqlRow> result = new ArrayList<>(10);
@@ -177,7 +177,7 @@ public class SqlConnector {
      * Executes SQL query (example: insert, drop, delete etc.)
      * @param insertQuery string with SQL query
      * @return boolean execution result value
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public boolean Execute(String insertQuery) throws Exception {
         getLoggerOwner().writeLog(ILoggerOwner.LogLevel.DEBUG, String.format("Trying to make a command '%s'", insertQuery));

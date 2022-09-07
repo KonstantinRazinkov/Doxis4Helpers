@@ -43,7 +43,7 @@ public class ImagingServiceConverter {
      * @param library Selected library
      * @param quality Quality of final file
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static byte[] ConvertFromDocumentPart(ISession doxis4Session, IDocumentPart documentPart, Library library, int quality) throws Exception {
         if (doxis4Session.getImagingServiceURL() == null || "".equals(doxis4Session.getImagingServiceURL())) throw new Exception("Cant convert without Imaging Service URL");
@@ -88,7 +88,7 @@ public class ImagingServiceConverter {
      * Create PDF with iTextPDF
      * @param images list of images as byte arrays
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static byte[] ConvertFromImagesStreamsByITextPDF(List<byte[]> images) throws Exception {
         com.lowagie.text.Document document = new com.lowagie.text.Document(PageSize.A4, 20.0f, 20.0f, 20.0f, 150.0f);
@@ -118,7 +118,7 @@ public class ImagingServiceConverter {
      * Create PDF with PDFBox
      * @param images list of images as byte arrays
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
 
     public static byte[] ConvertFromImagesStreamsByPDFBox(List<byte[]> images) throws Exception {

@@ -24,7 +24,7 @@ public class TemplateFieldCascade {
     /**
      * Parse namespace to get real address of the field
      * @param textFromDoxis4 namespace string from Doxis4 descriptor mapping table
-     * @return
+     * @return String with nameSpace
      */
     public String parseNameSpace(String textFromDoxis4) {
         boolean foundNameSpace = false;
@@ -41,7 +41,8 @@ public class TemplateFieldCascade {
     /**
      * Parse fields to get field cascade
      * @param textFromDoxis4 field string from Doxis4 descriptor mapping table
-     * @return
+     * @return Array List of TemplateField
+     *                       @see com.sersolutions.doxis4helpers.documents.doxis4templates.datatypes.TemplateField
      */
     public ArrayList<TemplateField> parseFields(String textFromDoxis4) {
         String[] fieldsForParse = textFromDoxis4.split("/");

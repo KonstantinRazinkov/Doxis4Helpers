@@ -40,8 +40,7 @@ public class JolietNamingConventions extends NamingConventions {
 	 * @param maxChars
 	 *            Maximum number of characters permitted in the filename: (64
 	 *            for the specification; 103 from mkisofs; 110 from Microsoft.)
-	 * 
-	 * @see http://msdn.microsoft.com/en-us/library/ff469400.aspx
+	 * @param failOnTruncation boolean value
 	 */
     public JolietNamingConventions(int maxChars, boolean failOnTruncation) {
         super("Joliet");

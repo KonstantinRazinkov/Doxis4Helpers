@@ -42,9 +42,12 @@ public class ISO9660DirectoryRecord {
 
     /**
      * File
+     * @param streamHandler Stream Handler object
+     * @param file ISO9660File object
+     * @param helper LayoutHelper object
+     * @throws HandlerException if something goes wrong
      */
-    public ISO9660DirectoryRecord(StreamHandler streamHandler, ISO9660File file, LayoutHelper helper)
-            throws HandlerException {
+    public ISO9660DirectoryRecord(StreamHandler streamHandler, ISO9660File file, LayoutHelper helper) throws HandlerException {
         init(streamHandler, helper);
         this.filenameDataReference = helper.getFilenameDataReference(file);
         this.isDirectory = false;
@@ -52,15 +55,23 @@ public class ISO9660DirectoryRecord {
 
     /**
      * Directory
+     * @param streamHandler Stream Handler object
+     * @param dir ISO9660Directory object
+     * @param helper LayoutHelper object
+     * @throws HandlerException if something goes wrong
      */
-    public ISO9660DirectoryRecord(StreamHandler streamHandler, ISO9660Directory dir, LayoutHelper helper)
-            throws HandlerException {
+    public ISO9660DirectoryRecord(StreamHandler streamHandler, ISO9660Directory dir, LayoutHelper helper) throws HandlerException {
         init(streamHandler, helper);
         this.filenameDataReference = helper.getFilenameDataReference(dir);
     }
 
     /**
      * Special Directory
+     * @param streamHandler Stream Handler object
+     * @param object Object object
+     * @param dir ISO9660Directory object
+     * @param helper LayoutHelper object
+     * @throws HandlerException if something goes wrong
      */
     public ISO9660DirectoryRecord(StreamHandler streamHandler, Object object, ISO9660Directory dir, LayoutHelper helper)
             throws HandlerException {

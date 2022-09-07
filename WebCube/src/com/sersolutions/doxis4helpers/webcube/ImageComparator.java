@@ -81,6 +81,8 @@ public class ImageComparator {
     /**
      * Draw rectangles which cover the regions of the difference pixels.
      * @return the result of the drawing.
+     * @throws IOException if something goes wrong
+     * @throws URISyntaxException if something goes wrong
      */
     public BufferedImage compareImages() throws IOException, URISyntaxException {
         // check images for valid
@@ -295,7 +297,7 @@ public class ImageComparator {
      * Save image to the provided path.
      * @param path the path to the saving image.
      * @param image the {@code BufferedImage} object of this specific image.
-     * @throws IOException
+     * @throws IOException if something goes wrong
      */
     public static void saveImage(String path, BufferedImage image ) throws IOException {
         // make dir if it's not using from Gradle.

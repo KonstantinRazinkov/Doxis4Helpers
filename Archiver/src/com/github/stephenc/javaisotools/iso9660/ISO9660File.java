@@ -401,7 +401,7 @@ public class ISO9660File implements ISO9660HierarchyObject {
      * or null if this {@link com.github.stephenc.javaisotools.iso9660.ISO9660File} is not constructed from a
      * {@link java.io.File}
      * 
-     * @return
+     * @return String data
      */
     public String getAbsolutePath() {
         return absolutePath;

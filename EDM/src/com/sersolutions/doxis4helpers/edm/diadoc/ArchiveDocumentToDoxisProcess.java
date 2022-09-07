@@ -13,8 +13,8 @@ import com.sersolutions.doxis4helpers.commons.Descriptors;
 import com.sersolutions.doxis4helpers.commons.InformationObjects;
 import com.sersolutions.doxis4helpers.edm.datatypes.*;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,9 +24,6 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-/**
- * Created by drazdov on 25.06.2018.
- */
 public class ArchiveDocumentToDoxisProcess {
 
     public static Logger log = LogManager.getLogger(DiadocConnector.class);
@@ -331,7 +328,7 @@ public class ArchiveDocumentToDoxisProcess {
 
             log.trace("Adding file as normal document");
             folderNode = workFolder.getNodeByID(edmSettings.getFolderNodeDocuments());
-            InformationObjects.AddContentToDocument(session, doxisDocument, 0, "Документ", edmFile.getContent(), edmFile.getFileName(), false);
+            InformationObjects.AddContentToDocument(session, doxisDocument, 0, "Document", edmFile.getContent(), edmFile.getFileName(), false);
             log.trace("Archive Doxis4 document");
             session.getDocumentServer().archiveDocument(doxisDocument, session);
 
@@ -340,7 +337,7 @@ public class ArchiveDocumentToDoxisProcess {
         {
             log.trace("Adding file as tech document");
             folderNode = workFolder.getNodeByID(edmSettings.getFolderNodeTech());
-            InformationObjects.AddContentToDocument(session, doxisDocument, 0, "Технические данные", edmFile.getContent(), edmFile.getFileName(), false);
+            InformationObjects.AddContentToDocument(session, doxisDocument, 0, "Technical data", edmFile.getContent(), edmFile.getFileName(), false);
             log.trace("Archive Doxis4document");
             session.getDocumentServer().archiveDocument(doxisDocument, session);
         }
@@ -772,7 +769,7 @@ public class ArchiveDocumentToDoxisProcess {
         }
 
         log.trace("Add file to the Doxis4 document");
-        InformationObjects.AddContentToDocument(session, doxisDocument, 0, "Технические данные", edmSignature.getContent(), filename, false);
+        InformationObjects.AddContentToDocument(session, doxisDocument, 0, "Technical data", edmSignature.getContent(), filename, false);
 
         log.trace("Archiving Doxis4 document");
         session.getDocumentServer().archiveDocument(doxisDocument, session);
@@ -1093,7 +1090,7 @@ public class ArchiveDocumentToDoxisProcess {
             }
             else if (edmFile.getTechType() == EDMFile.TechType.technicalxml)
             {
-                InformationObjects.AddContentToDocument(session, doxisDocument, 1, "Технические данные", edmFile.getContent(), edmFile.getFileName(), false);
+                InformationObjects.AddContentToDocument(session, doxisDocument, 1, "Technical data", edmFile.getContent(), edmFile.getFileName(), false);
             }
 
         }

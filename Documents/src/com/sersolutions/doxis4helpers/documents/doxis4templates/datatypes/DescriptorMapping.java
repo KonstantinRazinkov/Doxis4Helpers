@@ -29,7 +29,7 @@ public class DescriptorMapping {
      * Parse Doxis4 template mapping for saving actual mapping to memory
      * @param doxis4DescriptorMapping IDescriptorMapping from Doxis4
      *                                @see com.ser.blueline.metaDataComponents.IDescriptorMapping
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public void Analyze(IDescriptorMapping doxis4DescriptorMapping) throws Exception {
         descriptorID = doxis4DescriptorMapping.getDescriptorId();

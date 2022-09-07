@@ -19,7 +19,7 @@ public class Tools {
      * Get file from local file storage or from web-server
      * @param path Any path to file
      * @return byte array of the file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static byte[] GetFileFromAnywhere(String path) throws Exception {
         byte[] file = null;
@@ -35,7 +35,7 @@ public class Tools {
      * Download file from any web-address (including SSL)
      * @param url path to file at web
      * @return byte array of the file
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static byte[] DownloadFileFromWeb(String url) throws Exception {
         URL templateUrl = new URL(url);

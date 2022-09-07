@@ -62,6 +62,7 @@ public class Dialogs {
      * @param dlg Doxis4 webCube dialog
      *            @see com.ser.evITAWeb.api.IDialog
      * @param fieldName Name of the control
+     * @return String text field
      */
     public static String GetTextField (IDialog dlg, String fieldName) {
         IControl searchControl = dlg.getFieldByName(fieldName);
@@ -85,6 +86,7 @@ public class Dialogs {
      * @param dlg Doxis4 webCube dialog
      *            @see com.ser.evITAWeb.api.IDialog
      * @param fieldName Name of the control
+     * @return Date value of date field
      */
     public static Date GetDateField(IDialog dlg, String fieldName) {
         IControl searchControl = dlg.getFieldByName(fieldName);
@@ -358,7 +360,7 @@ public class Dialogs {
      * @param dialog webCube Dialog with controls
      *            @see com.ser.evITAWeb.api.IDialog
      * @return boolean value
-     *
+     * @throws EvitaWebException if something goes wrong
      */
     public static boolean HasNotFilledMandatoryControls(IDialog dialog) throws EvitaWebException {
         boolean hasEmptyMandatoryField = false;

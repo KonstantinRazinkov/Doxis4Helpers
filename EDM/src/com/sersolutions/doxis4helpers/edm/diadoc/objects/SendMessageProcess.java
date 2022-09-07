@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by drazdov on 23.06.2018.
- */
 public class SendMessageProcess {
     private DiadocConnector connector;
     private List<EDMDocument> EDMDocuments;

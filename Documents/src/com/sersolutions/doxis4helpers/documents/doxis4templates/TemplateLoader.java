@@ -30,7 +30,7 @@ public class TemplateLoader {
      * @param templateID ID of document template from Doxis4
      * @param loadType load type
      * @return Loaded template
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public Template LoadTemplate(String templateID, LoadType loadType) throws Exception {
         IDocumentTemplate doxis4Template = doxis4Session.getDocumentServer().getDocumentTemplate(templateID, doxis4Session);

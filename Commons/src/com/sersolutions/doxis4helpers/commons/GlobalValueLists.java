@@ -451,6 +451,7 @@ public class GlobalValueLists {
      * @param column number of value column in global value list
      * @param value value that must be set to global value list
      * @return value that was settled up. If value could not be set - empty string will be returned.
+     * @throws Exception if something goes wrong
      */
     public static String SetValueToGlobalValueList(ISession doxis4Session, String gvlName, String keyValue,  int column, String value) throws Exception {
         return SetValueToGlobalValueList(doxis4Session, gvlName, keyValue, 0, column, value);

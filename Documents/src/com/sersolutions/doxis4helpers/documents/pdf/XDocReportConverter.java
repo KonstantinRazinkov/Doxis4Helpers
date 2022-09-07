@@ -15,7 +15,7 @@ public class XDocReportConverter {
      * Convert from Doxis4
      * @param documentPart Doxis4 Document part that contains DOCX file
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static byte[] ConvertFromDocumentPart(IDocumentPart documentPart) throws Exception {
         byte[] out = null;
@@ -33,7 +33,7 @@ public class XDocReportConverter {
      * Convert from byte array of DOCX file
      * @param originalDocxFile byte array with DOCX-file
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static byte[] ConvertFromDocx(byte[] originalDocxFile) throws Exception {
 
@@ -48,7 +48,7 @@ public class XDocReportConverter {
      * Convert Apache POI Word docx object to PDF
      * @param docxFile Apache POI Word docx object
      * @return PDF as byte array
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public static ByteArrayOutputStream ConvertFromDocx(XWPFDocument docxFile) throws Exception {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

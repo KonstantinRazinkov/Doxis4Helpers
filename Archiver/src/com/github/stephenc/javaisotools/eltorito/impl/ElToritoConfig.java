@@ -110,6 +110,7 @@ public class ElToritoConfig extends BootConfig {
      * Set Boot Info Table (only allowed for no-emulation images)
      *
      * @param genBootInfoTable Whether to generate a boot info table
+     * @throws ConfigException if something goes wrong
      */
     public void setGenBootInfoTable(boolean genBootInfoTable) throws ConfigException {
         if (!genBootInfoTable || this.bootMediaType == ElToritoConfig.BOOT_MEDIA_TYPE_NO_EMU) {

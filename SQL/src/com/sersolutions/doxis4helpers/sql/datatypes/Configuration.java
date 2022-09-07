@@ -33,7 +33,7 @@ public class Configuration {
     /**
      * Loads SQL connection params (class, connectionString, login and pass) from XML file
      * @param fileName String value of configuration file to load
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
 
     public void Load(String fileName) throws  Exception {
@@ -66,7 +66,7 @@ public class Configuration {
     /**
      * Saves SQL connection params (class, connectionString, login and pass) to XML file
      * @param fileName String value of configuration file to load
-     * @throws Exception
+     * @throws Exception if something goes wrong
      */
     public void Save(String fileName) throws Exception {
         File fileConfig = null;

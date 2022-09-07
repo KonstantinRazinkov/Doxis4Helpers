@@ -268,7 +268,7 @@ public class ISO9660Directory implements ISO9660HierarchyObject {
      * @param path Filesystem-specific path to be added recursively
      *
      * @return Topmost added directory
-     * @throws com.github.stephenc.javaisotools.sabre.HandlerException
+     * @throws com.github.stephenc.javaisotools.sabre.HandlerException if something goes wrong
      */
     public ISO9660Directory addPath(String path) throws HandlerException {
         ISO9660Directory dir;

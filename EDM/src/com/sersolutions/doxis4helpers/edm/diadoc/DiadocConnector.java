@@ -31,12 +31,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
-/**
- * Created by drazdov on 22.06.2018.
- */
 public class DiadocConnector implements IEDMConnector {
     public static Logger log = LogManager.getLogger(DiadocConnector.class);
 
