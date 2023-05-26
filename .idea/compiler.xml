@@ -11,6 +11,16 @@
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="Archiver" target="11" />
+      <module name="Commons" target="11" />
+      <module name="Documents" target="11" />
+      <module name="Doxis4Helpers" target="11" />
+      <module name="EDM" target="11" />
+      <module name="Notifications" target="11" />
+      <module name="SQL" target="11" />
+      <module name="WebCube" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

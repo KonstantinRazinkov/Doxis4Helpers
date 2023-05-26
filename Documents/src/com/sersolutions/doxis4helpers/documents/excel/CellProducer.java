@@ -85,6 +85,57 @@ public class CellProducer {
     }
 
     /**
+     * Create XLSX Cell from CellParams
+     * @param params CellParams
+     * @return XLSX Cell
+     */
+    public Cell produceCellFromCell(Cell cell, CellParams params){
+        cell = getCell(params.getAddress());
+
+        cell.setCellValue(params.getValue());
+//        cell.setCellStyle(produceCellStyle(params, params.getNeedRefresh()));
+        cell.setCellStyle(cell.getCellStyle());
+
+        if (params.getRegion()) {
+            boolean alreadyMerged = false;
+            CellRangeAddress region = CellRangeAddress.valueOf(params.getRegionAddress());
+            CellRangeAddress oldMerge = null;
+
+            for (int range = 0; range < sheet.getMergedRegions().size(); range++) {
+                CellRangeAddress rangeRegion = sheet.getMergedRegion(range);
+                if (rangeRegion.getFirstColumn() == region.getFirstColumn() && rangeRegion.getFirstRow() == region.getFirstRow()) {
+                    oldMerge = rangeRegion;
+                    alreadyMerged=true;
+                    break;
+                }
+
+            }
+            if (!alreadyMerged) sheet.addMergedRegion(region);
+
+            if (params.getBorderStyle() != null) {
+
+                RegionUtil.setBorderTop(params.getBorderStyle(), region, sheet);
+                RegionUtil.setBorderLeft(params.getBorderStyle(), region, sheet);
+                RegionUtil.setBorderRight(params.getBorderStyle(), region, sheet);
+                RegionUtil.setBorderBottom(params.getBorderStyle(), region, sheet);
+            }
+
+            /*
+            for (int col = region.getFirstColumn(); col <= region.getLastColumn(); col++)
+            {
+                for (int row = region.getFirstRow(); row <= region.getLastRow(); row++)
+                {
+
+                    if (col > region.getFirstColumn() && col < region.getLastColumn()
+                            && row > region.getFirstRow() && row < region.getLastRow()) continue;
+                    getCell(row, col).setCellStyle(produceCellStyle(params, false));
+                }
+            }*/
+        }
+        return cell;
+    }
+
+    /**
      * Adds HyperLink to Cell from CellParams
      * @param workbook Workbook
      * @param params CellParams
@@ -142,6 +193,10 @@ public class CellProducer {
         cellStyle.setWrapText(cellParams.getWrap());
         if (cellParams.getHorizontalAlignment() != null) cellStyle.setAlignment(cellParams.getHorizontalAlignment());
         if (cellParams.getVerticalAlignment() != null)  cellStyle.setVerticalAlignment(cellParams.getVerticalAlignment());
+        if (cellParams.getBackgroundColor() != null) {
+            cellStyle.setFillForegroundColor(cellParams.getBackgroundColor().getIndex());
+            cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        }
 
         if (cellParams.getBorderStyle() != null) {
             cellStyle.setBorderTop(cellParams.getBorderStyle());

@@ -6,8 +6,12 @@ import com.ser.evITAWeb.api.toolbar.Button;
 import com.ser.evITAWeb.api.toolbar.ICustomGroup;
 import com.ser.evITAWeb.api.toolbar.Toolbar;
 import com.ser.evITAWeb.scripting.Doxis4ClassFactory;
+import com.ser.evITAWeb.scripting.archive.ArchiveScripting;
 import com.ser.evITAWeb.scripting.bpmservice.task.TaskScripting;
 import com.ser.evITAWeb.scripting.bpmservice.workbasket.WorkbasketScripting;
+import com.ser.evITAWeb.scripting.document.DocumentScripting;
+import com.ser.evITAWeb.scripting.filing.FilingEnvironmentScripting;
+import com.ser.evITAWeb.scripting.global.GlobalScripting;
 import com.ser.evITAWeb.scripting.hitlist.HitListScripting;
 import com.ser.evITAWeb.scripting.record.RecordScripting;
 import com.ser.evITAWeb.scripting.search.SearchScripting;
@@ -25,6 +29,8 @@ public class RibbonProducer {
     private TaskScripting taskScripting;
     private WorkbasketScripting workBasketScripting;
     private HitListScripting hitListScripting;
+    private DocumentScripting documentScripting;
+    private FilingEnvironmentScripting archiveScripting;
 
     public RibbonProducer(SearchScripting searchScripting)
     {
@@ -48,6 +54,10 @@ public class RibbonProducer {
 
     public RibbonProducer(HitListScripting hitListScripting) { this.hitListScripting = hitListScripting;}
 
+    public RibbonProducer(DocumentScripting documentScripting) { this.documentScripting = documentScripting;}
+
+    public RibbonProducer(FilingEnvironmentScripting archiveScripting) { this.archiveScripting = archiveScripting;}
+
 
     /**
      * Get ribbon
@@ -69,6 +79,10 @@ public class RibbonProducer {
         }
         if (workBasketScripting != null) {
             ribbon = workBasketScripting.getRibbon();
+            return ribbon;
+        }
+        if (documentScripting != null) {
+            ribbon = documentScripting.getRibbon(documentScripting.getDocumentView().getDefaultDocumentDisplayItem());
             return ribbon;
         }
         if (hitListScripting != null){
@@ -148,5 +162,26 @@ public class RibbonProducer {
         }
 
         group.addButton(getButton(title, tooltip, imagePath , executeclassname, redirectURL));
+    }
+
+    /**
+     * Get or create button at ribbon
+     * @param title Title for button
+     * @param tooltip Tooltip for button
+     * @param imagePath path to image of ribbon button
+     * @param executeclassname Class for execution of clicking
+     *                         @see com.ser.evITAWeb.scripting.toolbar.hitlist.HitlistToolbarButtonAction
+     * @param redirectURL HTTP address to redirect after button was clicked (works only if ececuteclassname is null
+     * @throws EvitaWebException if something goes wrong
+     */
+    public void addButtonWithoutGroup(String title, String tooltip, String imagePath, String executeclassname, String redirectURL) throws EvitaWebException {
+
+        Toolbar ribbon = getRibbon();
+        if (ribbon == null) {
+            return;
+        }
+
+
+        ribbon.addButton(getButton(title, tooltip, imagePath , executeclassname, redirectURL));
     }
 }

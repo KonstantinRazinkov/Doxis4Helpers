@@ -20,6 +20,7 @@ public class CellParams {
     private String font;
     private int fontSize;
     private IndexedColors color;
+    private IndexedColors backgroundColor;
     private HorizontalAlignment horizontalAlignment;
     private VerticalAlignment verticalAlignment;
     private BorderStyle borderStyle;
@@ -116,6 +117,7 @@ public class CellParams {
         clone.setFont(getFont());
         clone.setFontSize(getFontSize());
         clone.setColor(getColor());
+        clone.setBackgroundColor(getBackgroundColor());
         clone.setHorizontalAlignment(getHorizontalAlignment());
         clone.setVerticalAlignment(getVerticalAlignment());
         clone.setWrap(getWrap());
@@ -188,6 +190,11 @@ public class CellParams {
         this.color = color;
     }
 
+    public void setBackgroundColor(IndexedColors color) {
+        setNeedRefresh(true);
+        this.backgroundColor = color;
+    }
+
     public void setHorizontalAlignment (HorizontalAlignment horizontalAlignment) {
         setNeedRefresh(true);
         this.horizontalAlignment = horizontalAlignment;
@@ -250,6 +257,10 @@ public class CellParams {
     public IndexedColors getColor()
     {
         return this.color;
+    }
+    public IndexedColors getBackgroundColor()
+    {
+        return this.backgroundColor;
     }
     public HorizontalAlignment getHorizontalAlignment()
     {

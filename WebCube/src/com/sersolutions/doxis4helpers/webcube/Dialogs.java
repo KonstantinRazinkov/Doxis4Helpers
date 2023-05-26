@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,6 +80,64 @@ public class Dialogs {
         }
 
         return "";
+    }
+
+    /**
+     * Get ILabel by name
+     * @param dlg Doxis4 webCube dialog
+     *            @see com.ser.evITAWeb.api.IDialog
+     * @param labelName Name of the label
+     * @return ILabel if found. If not - null
+     *              @see ILabel
+     */
+    public static ILabel GetLabel (IDialog dlg, String labelName) {
+        List<IControl> controls = dlg.getFields();
+        for (IControl control : controls){
+            if (control instanceof ILabel){
+                ILabel label = (ILabel) control;
+                if (label.getText().equalsIgnoreCase(labelName) || label.getName().equalsIgnoreCase(labelName)) return label;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get IFrame by name
+     * @param dlg Doxis4 webCube dialog
+     *            @see com.ser.evITAWeb.api.IDialog
+     * @param frameName Name of the label
+     * @return IFrame if found. If not - null
+     *              @see IFrame
+     */
+    public static IFrame GetFrame (IDialog dlg, String frameName) {
+        List<IControl> controls = dlg.getFields();
+        for (IControl control : controls){
+            if (control instanceof IFrame){
+                IFrame frame = (IFrame) control;
+                if (frame.getText().equalsIgnoreCase(frameName) || frame.getName().equalsIgnoreCase(frameName)) return frame;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get IFormattedLabel by name
+     * @param dlg Doxis4 webCube dialog
+     *            @see com.ser.evITAWeb.api.IDialog
+     * @param formattedLabelName Name of the label
+     * @return IFormattedLabel if found. If not - null
+     *              @see IFormattedLabel
+     */
+    public static IFormattedLabel GetFormattedLabel (IDialog dlg, String formattedLabelName) {
+        List<IControl> controls = dlg.getFields();
+        for (IControl control : controls){
+            if (control instanceof IFormattedLabel){
+                IFormattedLabel formattedLabel = (IFormattedLabel) control;
+                if (formattedLabel.getText().equalsIgnoreCase(formattedLabelName) || formattedLabel.getName().equalsIgnoreCase(formattedLabelName))
+                    return formattedLabel;
+            }
+        }
+        return null;
     }
 
     /**
@@ -188,6 +247,62 @@ public class Dialogs {
             try {
                 quickSearchSelector.setControlValue(value);
             } catch (EvitaWebException ewex){}
+        }
+    }
+
+    /**
+     * Set control value
+     * @param dialog IDialog of form
+     *                @see IDialog
+     */
+    public  static void ClearAllFields(IDialog dialog) {
+        List<IControl> controls = dialog.getFields();
+        for (IControl control : controls) {
+            if (control instanceof ITextField) {
+                ITextField textField = (ITextField) control;
+                textField.setText("");
+
+                return;
+            }
+            if (control instanceof IMultiValueEdit) {
+                IMultiValueEdit mve = (IMultiValueEdit) control;
+                List<String> values = new ArrayList<>();
+                mve.setValues(values);
+            }
+            if (control instanceof IDate) {
+                IDate dateField = (IDate) control;
+                dateField.setText("");
+            }
+            if (control instanceof ISelectionBox) {
+                ISelectionBox selectionBox = (ISelectionBox) control;
+                selectionBox.setSelectedItem("");
+            }
+            if (control instanceof IMultiValueSelectionBox) {
+                IMultiValueSelectionBox multiValueSelectionBox = (IMultiValueSelectionBox) control;
+                List<String> selectedItems = new ArrayList<>();
+                multiValueSelectionBox.setSelectedItems(selectedItems);
+            }
+            if (control instanceof ICheckbox) {
+                ICheckbox checkbox = (ICheckbox) control;
+                checkbox.setChecked(false);
+            }
+            if (control instanceof IDBRecordSelector) {
+                IDBRecordSelector idbRecordSelector = (IDBRecordSelector) control;
+                idbRecordSelector.setText("");
+                idbRecordSelector.setKeyField("");
+            }
+            if (control instanceof ICategoryTree) {
+                ICategoryTree iCategoryTree = (ICategoryTree) control;
+                iCategoryTree.setText("");
+                iCategoryTree.setDirty(true);
+            }
+            if (control instanceof com.ser.evITAWeb.htmlControls.QuickSearchSelector) {
+                com.ser.evITAWeb.htmlControls.QuickSearchSelector quickSearchSelector = (com.ser.evITAWeb.htmlControls.QuickSearchSelector) control;
+                try {
+                    quickSearchSelector.setControlValue("");
+                } catch (EvitaWebException ewex) {
+                }
+            }
         }
     }
 
@@ -430,7 +545,21 @@ public class Dialogs {
                 if (descriptor == null) continue;
                 if (descriptor.getId() == null) continue;
                 if (control.getDescriptorId().equals(descriptor.getId())) {
-                    SetControlValue(control, descriptor);
+                    if (control instanceof IDate){
+                        try {
+                            String finalDate = "";
+                            String initialDate = Descriptors.GetDescriptorValue(source.getSession(), source, descriptor.getName());
+                            if (StringUtils.isNotBlank(initialDate)) {
+                                Date date = Descriptors.GetValueAsDate(initialDate, "yyyyMMdd");
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                                finalDate = simpleDateFormat.format(date);
+                                SetControlValue(control, finalDate);
+                            }
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    else SetControlValue(control, descriptor);
                     if (lockFields) control.setEnabled(false);
                 }
             }

@@ -74,10 +74,10 @@ public class Descriptors {
                         if (destDescriptor.getId().equals(sourceDescriptor.getId())) {
                             transfered = true;
                             if (replace) {
-                                if (sourceDescriptor.getStringValues().length <= 1) {
-                                    destDescriptor.setValue(sourceDescriptor.getStringValues()[0]);
-                                } else {
-                                    destDescriptor.setValues(sourceDescriptor.getStringValues());
+                                if (sourceDescriptor.getStringValues().length <= 1) destDescriptor.setValue(sourceDescriptor.getStringValues()[0]);
+                                else{
+                                    if (sourceDescriptor.getStringValues().length == 0) destDescriptor.setValue("");
+                                    else destDescriptor.setValues(sourceDescriptor.getStringValues());
                                 }
                             }
                             break;
@@ -89,6 +89,74 @@ public class Descriptors {
                         } else {
                             for (String add : sourceDescriptor.getStringValues()) {
                                 AddStringValueToMultivalueDescriptor(doxis4Session, dest, sourceDescriptor.getName(), add);
+                            }
+                        }
+                    }
+                }
+
+            } catch (Exception ex) {
+
+            }
+
+        }
+    }
+
+    /**
+     * Universal method to copy all descriptors from one information object to another
+     * @param doxis4Session Doxis4 Session Object
+     *                      @see ISession
+     * @param source Information object with descriptors that must be copied to another information object
+     *               @see IInformationObject
+     * @param dest Information object that must take descriptors from first one
+     *             @see IInformationObject
+     * @param replace Boolean parameter that sets up needs of replace descriptors, that already filled to dest
+     * @param addIfExistsMultivalue boolean parameter that allows adding same values several times in multivalue descriptors
+     * @throws Exception if there will be some problems of getting or setting descriptors
+     */
+    public static void CopyAllDescriptors(ISession doxis4Session, IInformationObject source, IInformationObject dest, boolean replace, boolean addIfExistsMultivalue) throws Exception {
+        IValueDescriptor[] destDescriptors = dest.getDescriptorList();
+        List<String> destAviableDescriptors = new ArrayList<String>();
+
+        if (dest instanceof Folder) {
+            destAviableDescriptors = Arrays.asList(((Folder) dest).getObjectClass().getAssignedDescriptorIDs());
+        } else if (dest instanceof Document) {
+            destAviableDescriptors = Arrays.asList(((Document) dest).getArchiveClass().getAssignedDescriptorIDs());
+        } else if (dest instanceof Task) {
+            destAviableDescriptors = Arrays.asList(((Task) dest).getProcessInstance().getProcessType().getAssignedDescriptorIDs());
+        } else if (dest instanceof ProcessInstance) {
+            destAviableDescriptors = Arrays.asList(((ProcessInstance) dest).getProcessType().getAssignedDescriptorIDs());
+        }
+
+        boolean transfered;
+        for (IValueDescriptor sourceDescriptor : source.getDescriptorList()) {
+            try {
+                transfered = false;
+                if (sourceDescriptor == null) continue;
+                if (sourceDescriptor.getId() == null) continue;
+
+                if (destAviableDescriptors.contains(sourceDescriptor.getId())) {
+                    for (IValueDescriptor destDescriptor : destDescriptors) {
+                        if (destDescriptor == null) continue;
+                        if (destDescriptor.getId() == null) continue;
+                        if (destDescriptor.getId().equals(sourceDescriptor.getId())) {
+                            transfered = true;
+                            if (replace) {
+                                if (sourceDescriptor.getStringValues().length <= 1) destDescriptor.setValue(sourceDescriptor.getStringValues()[0]);
+                                else{
+                                    if (sourceDescriptor.getStringValues().length == 0) destDescriptor.setValue("");
+                                    else destDescriptor.setValues(sourceDescriptor.getStringValues());
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    if (!transfered) {
+                        if (sourceDescriptor.getStringValues().length <= 1) {
+                            AddDescriptorToInformationObject(doxis4Session, dest, sourceDescriptor.getName(), sourceDescriptor.getStringValues()[0]);
+                        } else {
+                            for (String add : sourceDescriptor.getStringValues()) {
+                                if (addIfExistsMultivalue) AddStringValueToMultivalueDescriptor(doxis4Session, dest, sourceDescriptor.getName(), add, true);
+                                if (!addIfExistsMultivalue) AddStringValueToMultivalueDescriptor(doxis4Session, dest, sourceDescriptor.getName(), add);
                             }
                         }
                     }
@@ -334,6 +402,37 @@ public class Descriptors {
                 }
             }
         }
+        if (!isExist) {
+            SetDescriptorToInformationObject(doxis4Session, informationObject, descriptorName, newValue, true);
+        }
+    }
+
+    /**
+     * Add new descriptor to information object (only if this descriptor was not filled yet before).
+     * This method is also used by SetDescriptorToInformationObject if it sees that descriptor was not added to information object, so it's better to use that method instead of this.
+     * @param doxis4Session Doxis4 Session object
+     *                      @see ISession
+     * @param informationObject Information Object that must have new descriptor
+     *                          @see IInformationObject
+     * @param descriptorName Name, FQN or ID of descriptor
+     * @param newValue Value that must be added to information object
+     * @param addIfExists boolean value which determines whether to add same value to descriptor or not
+     * @throws Exception if there will be some error with adding descriptor to information object. If descriptor was added before - there will be Exception.
+     */
+    public static void AddStringValueToMultivalueDescriptor(ISession doxis4Session, IInformationObject informationObject, String descriptorName, String newValue, boolean addIfExists) throws Exception {
+        if (newValue == null) return;;
+        if (descriptorName == null) return;
+        String[] partiesExists = GetDescriptorValues(doxis4Session, informationObject, descriptorName);
+        Boolean isExist = false;
+        if (partiesExists != null) {
+            for (String exist : partiesExists) {
+                if (exist.toUpperCase().equals(newValue.toUpperCase())) {
+                    isExist = true;
+                    break;
+                }
+            }
+        }
+        if (addIfExists && isExist) isExist = false;
         if (!isExist) {
             SetDescriptorToInformationObject(doxis4Session, informationObject, descriptorName, newValue, true);
         }

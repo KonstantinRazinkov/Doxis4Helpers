@@ -264,9 +264,9 @@ public class InformationObjects {
             }
             for (IValueDescriptor field : fields) {
                 if (field.getDescriptor().getMultiValueType() == 0) {
-                    sql.append(String.format("AND %s = '%s' ", field.getName().toUpperCase(), field.getStringValues()[0].replaceAll("'", "''")));
+                    sql.append(String.format("AND %s = '%s' ", field.getName().toUpperCase().replaceAll("-", ""), field.getStringValues()[0].replaceAll("'", "''")));
                 } else {
-                    sql.append(String.format("AND %s LIKE '*%s*' ", field.getName().toUpperCase(), field.getStringValues()[0].replaceAll("'", "''")));
+                    sql.append(String.format("AND %s LIKE '*%s*' ", field.getName().toUpperCase().replaceAll("-", ""), field.getStringValues()[0].replaceAll("'", "''")));
                 }
             }
             return FindInformationObjects(session, archiveClassID, queryClassID, sql.toString());

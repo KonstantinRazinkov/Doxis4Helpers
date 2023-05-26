@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -101,6 +102,19 @@ public class GlobalValueLists {
 
     /**
      * Get single value from global value list
+     * @param stringMatrix IStringMatrix object
+     *                      @see IStringMatrix
+     * @param keyValue key value for searching target row in global value list. By deafault key column is 0
+     * @param column number of value column in global value list
+     * @return String value from global value list. Will return original value if will not found any row by key value.
+     */
+    public static String GetValueFromLocalGlobalValueList(IStringMatrix stringMatrix, String keyValue, int column)
+    {
+        return GetValueFromLocalGlobalValueList(stringMatrix, keyValue, 0, column);
+    }
+
+    /**
+     * Get single value from global value list
      * @param doxis4Session Doxis4 Session object
      *                      @see ISession
      * @param gvlName FQN name of global value list
@@ -152,6 +166,35 @@ public class GlobalValueLists {
     }
 
     /**
+     * Get single value from global value list
+     * @param stringMatrix IStringMatrix object
+     *                      @see IStringMatrix
+     * @param keyValue key value for searching target row in global value list
+     * @param keycolumn number of key column in global value list
+     * @param column number of value column in global value list
+     * @return String value from global value list. Will return original value if will not found any row by key value.
+     */
+    public static String GetValueFromLocalGlobalValueList(IStringMatrix stringMatrix, String keyValue, int keycolumn, int column)
+    {
+        int row;
+        try
+        {
+            for (row = 0; row < stringMatrix.getRowCount(); row++)
+            {
+                if (keyValue.equalsIgnoreCase(stringMatrix.getValue(row, keycolumn)))
+                {
+                    return stringMatrix.getValue(row, column);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return  (keyValue == null)? "" : keyValue;
+    }
+
+    /**
      * Get array of values from global value list
      * @param doxis4Session Doxis4 Session object
      *                      @see ISession
@@ -162,6 +205,19 @@ public class GlobalValueLists {
      */
     public static List<String> GetValuesFromGlobalValueList(ISession doxis4Session, String gvlName, String keyValue, int column) {
         return GetValuesFromGlobalValueList(doxis4Session, gvlName, keyValue, 0, column);
+    }
+
+    /**
+     * Get array of values from global value list
+     * @param stringMatrix IStringMatrix object
+     *                      @see IStringMatrix
+     * @param keyValue key value for searching target rows in global value list. By default key column is 0
+     * @param column number of value column in global value list
+     * @return List of string with values from global value list. Will return empty list if not results will be found.
+     */
+    public static List<String> GetValuesFromLocalGlobalValueList(IStringMatrix stringMatrix, String keyValue, int column)
+    {
+        return GetValuesFromLocalGlobalValueList(stringMatrix, keyValue, 0, column);
     }
     /**
      * Get array of values from global value list
@@ -228,6 +284,47 @@ public class GlobalValueLists {
         return  result;
     }
 
+
+    /**
+     * Get array of values from global value list
+     * @param stringMatrix IStringMatrix object
+     *                      @see IStringMatrix
+     * @param keyValue key value for searching target rows in global value list
+     * @param keycolumn number of key column in global value list
+     * @param column number of value column in global value list
+     * @return List of string with values from global value list. Will return empty list if not results will be found.
+     */
+    public static List<String> GetValuesFromLocalGlobalValueList(IStringMatrix stringMatrix, String keyValue, int keycolumn, int column)
+    {
+        List<String> result = new ArrayList<>();
+
+
+        int row;
+        try
+        {
+            result = new ArrayList<>(stringMatrix.getRowCount());
+            for (row = 0; row < stringMatrix.getRowCount(); row++)
+            {
+                String value = stringMatrix.getValue(row, keycolumn);
+                if (value == null || "".equals(value)) continue;
+
+                if (keyValue.contains(value) || "*".equals(keyValue))
+                {
+                    String resultValue = stringMatrix.getValue(row, column);
+                    if (!result.contains(resultValue))
+                    {
+                        result.add(resultValue);
+                    }
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return  result;
+    }
     /**
      * Get row from global value list as List of string
      * @param doxis4Session Doxis4 Session object
@@ -369,6 +466,43 @@ public class GlobalValueLists {
 
     /**
      * Get multiple rows from global value list as List of List of String (rows, columns)
+     * @param stringMatrix IStringMatrix Object
+     *                      @see IStringMatrix
+     * @param keyValue key value for searching target rows in global value list
+     * @param keycolumn number of key column in global value list
+     * @return List of list of strings (rows, columns). Will return empty list if not results will be found
+     */
+    public static List<List<String>> GetLinesFromLocalGlobalValueList(IStringMatrix stringMatrix, String keyValue, int keycolumn)
+    {
+        List<List<String>> result = new ArrayList<>();
+        int row;
+        try
+        {
+            result = new ArrayList<>(stringMatrix.getRowCount());
+            for (row = 0; row < stringMatrix.getRowCount(); row++)
+            {
+                String value = stringMatrix.getValue(row, keycolumn);
+                if (value == null || "".equals(value)) continue;
+
+                if (keyValue.contains(value) || "*".equals(keyValue))
+                {
+                    List<String> newRow = new ArrayList<>(stringMatrix.getColumnCount());
+                    for (int colNo = 0; colNo < stringMatrix.getColumnCount(); colNo++)
+                    {
+                        newRow.add(colNo, stringMatrix.getValue(row, colNo));
+                    }
+                    result.add(newRow);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return  result;
+    }
+    /**
+     * Get multiple rows from global value list as List of List of String (rows, columns)
      * @param doxis4Session Doxis4 Session object
      *                      @see ISession
      * @param gvlName FQN name of global value list
@@ -405,6 +539,113 @@ public class GlobalValueLists {
             }
         } catch (Exception ex) {
             log.error(String.format("Error in GetLinesFromGlobalValueList. gvlName='%s'; conditions='%s' stringMatrix='%s'",gvlName, conditions, stringMatrix) , ex);
+        }
+        return result;
+    }
+
+    /**
+     * Get multiple values from global value list as of String (rows, columns)
+     * @param doxis4Session Doxis4 Session object
+     *                      @see ISession
+     * @param gvlName FQN name of global value list
+     * @param conditions 'column name - value' pairs for searching target rows in global value list
+     * @param valueColumn Integer number of column to return value from
+     * @param cacheGVL use local cache of global value list (global value list will be cached on first request, after that every request will use only local cache)
+     * @return List strings. Will return empty list if not results will be found
+     */
+    public static List<String> GetValuesFromGlobalValueList(ISession doxis4Session, String gvlName, Map<Integer, String> conditions, Integer valueColumn, boolean cacheGVL) {
+        List<String> result = new ArrayList<>();
+        IStringMatrix stringMatrix = null;
+
+        try {
+
+            if (cacheGVL) {
+                stringMatrix = getCachedGVL2(gvlName);
+                if (stringMatrix == null) {
+                    stringMatrix = cacheGVL2(doxis4Session, gvlName);
+                }
+            } else {
+                stringMatrix = doxis4Session.getDocumentServer().getStringMatrix(gvlName, doxis4Session);
+            }
+            for (int row = 0; row < stringMatrix.getRowCount(); row++) {
+                boolean isRowMatchConditions = true;
+                boolean isFiltered = false; //marker that filter is 'working' (columns in conditions exist in string matrix, otherwise there is a config error, do not return results)
+                for (int column = 0; column < stringMatrix.getColumnCount(); column++) {
+                    if (conditions.containsKey(column)) {
+                        if (!conditions.get(column).equals(stringMatrix.getValue(row, column)) && !"*".equals(stringMatrix.getValue(row, column))) {
+                            isRowMatchConditions = false;
+                        }
+                        isFiltered = true;
+                    }
+                }
+                if (isFiltered && isRowMatchConditions) {
+                    result.add(stringMatrix.getRow(row).get(valueColumn));
+                }
+            }
+        } catch (Exception ex) {
+        }
+        return result;
+    }
+
+    /**
+     * Get multiple rows from global value list as List of List of String (rows, columns)
+     * @param stringMatrix IStringMatrix object
+     *                      @see IStringMatrix
+     * @param conditions 'column name - value' pairs for searching target rows in global value list
+     * @return List of list of strings (rows, columns). Will return empty list if not results will be found
+     */
+    public static List<List<String>> GetLinesFromLocalGlobalValueList(IStringMatrix stringMatrix, Map<Integer, String> conditions) {
+        List<List<String>> result = new ArrayList<>();
+
+        try {
+            for (int row = 0; row < stringMatrix.getRowCount(); row++) {
+                boolean isRowMatchConditions = true;
+                boolean isFiltered = false; //marker that filter is 'working' (columns in conditions exist in string matrix, otherwise there is a config error, do not return results)
+                for (int column = 0; column < stringMatrix.getColumnCount(); column++) {
+                    if (conditions.containsKey(column)) {
+                        if (!conditions.get(column).equals(stringMatrix.getValue(row, column)) && !"*".equals(stringMatrix.getValue(row, column))) {
+                            isRowMatchConditions = false;
+                        }
+                        isFiltered = true;
+                    }
+                }
+                if (isFiltered && isRowMatchConditions) {
+                    result.add(stringMatrix.getRow(row));
+                }
+            }
+        } catch (Exception ex) {
+        }
+        return result;
+    }
+
+    /**
+     * Get multiple values from global value list as of String
+     * @param stringMatrix IStringMatrix object
+     *                      @see IStringMatrix
+     * @param conditions 'column name - value' pairs for searching target rows in global value list
+     * @param valueColumn Integer number of column to return value from
+     * @return List of strings. Will return empty list if not results will be found
+     */
+    public static List<String> GetValuesFromLocalGlobalValueList(IStringMatrix stringMatrix, Map<Integer, String> conditions, Integer valueColumn) {
+        List<String> result = new ArrayList<>();
+
+        try {
+            for (int row = 0; row < stringMatrix.getRowCount(); row++) {
+                boolean isRowMatchConditions = true;
+                boolean isFiltered = false; //marker that filter is 'working' (columns in conditions exist in string matrix, otherwise there is a config error, do not return results)
+                for (int column = 0; column < stringMatrix.getColumnCount(); column++) {
+                    if (conditions.containsKey(column)) {
+                        if (!conditions.get(column).equals(stringMatrix.getValue(row, column)) && !"*".equals(stringMatrix.getValue(row, column))) {
+                            isRowMatchConditions = false;
+                        }
+                        isFiltered = true;
+                    }
+                }
+                if (isFiltered && isRowMatchConditions) {
+                    result.add(stringMatrix.getRow(row).get(valueColumn));
+                }
+            }
+        } catch (Exception ex) {
         }
         return result;
     }
@@ -500,6 +741,34 @@ public class GlobalValueLists {
 
         }
         return  (keyValue == null)? "" : keyValue;
+    }
+
+    /**
+     * Sets value to global value list
+     * @param doxis4Session Doxis4 Session object
+     *                      @see ISession
+     * @param gvlName FQN of global value list
+     * @param rowData HashMap including column number and value
+     * @return number of added row or -1 if row could not be added.
+     */
+    public static String AddRowToGlobalValueList(ISession doxis4Session, String gvlName, HashMap<Integer, String> rowData) {
+        int rowNum = -1;
+        try {
+            List<List<String>> cachedGVL = GetCachedGVL(gvlName);
+            IStringMatrix doxis4Matrix = doxis4Session.getDocumentServer().getStringMatrix(gvlName, doxis4Session);
+            IStringMatrixModifiable doxis4ModifableMatrix = doxis4Matrix.getModifiableCopy(doxis4Session);
+            rowNum = doxis4ModifableMatrix.getRowCount();
+            doxis4ModifableMatrix.addRow(rowNum);
+            for (Map.Entry<Integer, String> entry : rowData.entrySet()) {
+                Integer columnNumber = entry.getKey();
+                String value = entry.getValue();
+                doxis4ModifableMatrix.setValue(rowNum, columnNumber, value, true);
+            }
+            doxis4ModifableMatrix.commit();
+        } catch (Exception ex) {
+
+        }
+        return  (rowNum == -1)? "Row not added" : "Row added " + rowNum;
     }
 
 
